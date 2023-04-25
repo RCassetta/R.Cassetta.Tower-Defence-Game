@@ -1,0 +1,10 @@
+import pygame as pg
+
+WIDTH = 800
+HEIGHT = 800
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+BLUE = (50,50,255)
+RED = (255,50,50)
+FPS = 60
+RUNNING = True
