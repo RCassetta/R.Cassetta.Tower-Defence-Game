@@ -29,13 +29,22 @@ class Game:
     def run(self):
         while self.running:
             self.events()
+            self.screen.blit(self.background, (0, 0))
+            self.enemies.draw(self.screen)
             pg.display.flip()
             self.clock.tick(FPS)
-            self.screen.blit(self.background, (0, 0))
     def new(self):
         self.enemies = pg.sprite.Group()
-        self.draw()
+        enemy = enemies(20, 20, RED)
+        self.enemies.add(enemy)
+        enemy.rect = enemy.image.get_rect(center=(0, HEIGHT/2))
+    def draw(self):
+        self.screen.blit(self.background, (0, 0))
+        self.enemies.draw(self.screen)
+        pg.display.flip()
+        
 
 
 game = Game()
+game.new()
 game.run()

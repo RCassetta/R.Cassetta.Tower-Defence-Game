@@ -9,5 +9,6 @@ class enemies(Sprite):
         self.width = width
         self.height = height
         self.color = color
-        self.image.fill(BLACK)
+        self.image = pg.Surface((width, height))
+        self.image.fill(color)
         self.rect = self.image.get_rect()
