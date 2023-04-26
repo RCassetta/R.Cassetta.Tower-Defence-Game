@@ -16,6 +16,7 @@ class Game:
         pg.display.set_caption("Tower Defence Game")
         self.clock = pg.time.Clock()
         self.running = True
+        self.playing = True
         background = pg.image.load("C:\\Users\\R.Cassetta24\\OneDrive - Bellarmine College Preparatory\\Desktop\\IntroCompSci\\Tower Defence Game VSCode\\assets\\background.png").convert()
         self.background = pg.transform.scale(background, (WIDTH, HEIGHT))
     def events(self):
