@@ -19,6 +19,12 @@ class Game:
         self.playing = True
         background = pg.image.load("C:\\Users\\R.Cassetta24\\OneDrive - Bellarmine College Preparatory\\Desktop\\IntroCompSci\\Tower Defence Game VSCode\\assets\\background.png").convert()
         self.background = pg.transform.scale(background, (WIDTH, HEIGHT))
+
+    def new(self):
+        self.enemies = pg.sprite.Group()
+        enemy = enemies(20, 20, RED)
+        self.enemies.add(enemy)
+        enemy.rect = enemy.image.get_rect(center=(0, HEIGHT/2))
     def events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -31,17 +37,15 @@ class Game:
             self.events()
             self.screen.blit(self.background, (0, 0))
             self.enemies.draw(self.screen)
+            self.enemies.update()
             pg.display.flip()
             self.clock.tick(FPS)
-    def new(self):
-        self.enemies = pg.sprite.Group()
-        enemy = enemies(20, 20, RED)
-        self.enemies.add(enemy)
-        enemy.rect = enemy.image.get_rect(center=(0, HEIGHT/2))
+
     def draw(self):
         self.screen.blit(self.background, (0, 0))
         self.enemies.draw(self.screen)
         pg.display.flip()
+        
         
 
 

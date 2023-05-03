@@ -1,7 +1,7 @@
 import pygame as pg
 
-WIDTH = 800
-HEIGHT = 800
+WIDTH = 1400
+HEIGHT = 850
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 BLUE = (50,50,255)
