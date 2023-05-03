@@ -19,6 +19,7 @@ class Game:
         self.playing = True
         background = pg.image.load("C:\\Users\\R.Cassetta24\\OneDrive - Bellarmine College Preparatory\\Desktop\\IntroCompSci\\Tower Defence Game VSCode\\assets\\background.png").convert()
         self.background = pg.transform.scale(background, (WIDTH, HEIGHT))
+        self.path_enabled = False
 
     def new(self):
         self.enemies = pg.sprite.Group()
@@ -31,6 +32,11 @@ class Game:
                 if self.playing:
                     self.playing = False
                 self.running = False
+            elif event.type == pg.KEYDOWN:
+              if event.key == pg.K_p:
+                  self.path_enabled = not self.path_enabled
+                  for enemy in self.enemies:
+                      enemy.path_enabled = self.path_enabled  
 
     def run(self):
         while self.running:

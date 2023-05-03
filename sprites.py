@@ -12,8 +12,15 @@ class enemies(Sprite):
         self.image = pg.Surface((width, height))
         self.image.fill(color)
         self.rect = self.image.get_rect()
-    def update(self):
-        # Seg 1
+        self.path_enabled = False
+        self.player_health = 100
+    # def player_health(self):
+    #     self.player_health = 100
+    def path(self):
+        # print(self.rect.x)
+        # print(self.rect.y)
+        if self.path_enabled:
+            # Seg 1
             if self.rect.y == 415 and self.rect.x <=330:
                 self.rect.x += 5 
             # Seg 2
@@ -46,3 +53,12 @@ class enemies(Sprite):
             # seg 11
             if self.rect.y == 190 and self.rect.x >=900:
                 self.rect.x +=5
+
+    def update(self):
+        if self.path_enabled:
+            self.path()
+        if self.rect.x >= WIDTH:
+            self.kill()
+            print("Player Died")
+            self.player_health -= 1
+            print(self.player_health)
