@@ -57,8 +57,8 @@ class enemies(Sprite):
     def update(self):
         if self.path_enabled:
             self.path()
-        if self.rect.x >= WIDTH:
+        if self.rect.x == WIDTH:
             self.kill()
-            print("Player Died")
+            # print("Player Died")
             self.player_health -= 1
             print(self.player_health)
