@@ -38,8 +38,12 @@ class Game:
             new_enemy = enemies(*enemy)
             self.enemies.add(new_enemy)
             new_enemy.rect = new_enemy.image.get_rect(center=(0, HEIGHT/2))
-            enemy_colors = [RED, RED, RED, RED, RED, RED, RED, RED, RED, RED, RED, RED, RED, RED]
-            enemy_positions = [(0, HEIGHT/2), (-40, HEIGHT/2), (-80, HEIGHT/2), (-120, HEIGHT/2), (-160, HEIGHT/2), (-200, HEIGHT/2), (-240, HEIGHT/2), (-280, HEIGHT/2), (-320, HEIGHT/2), (-360, HEIGHT/2), (-400, HEIGHT/2), (-440, HEIGHT/2), (-480, HEIGHT/2), (-520, HEIGHT/2)]
+            enemy_colors = ([RED] * ENEMY_COUNT)
+            enemy_positions = []
+        for i in range(ENEMY_COUNT):
+            x = -40 * i
+            y = HEIGHT / 2
+            enemy_positions.append((x, y))
         for i in range(len(enemy_colors)):
             enemy = enemies(20, 20, enemy_colors[i])
             self.enemies.add(enemy)
@@ -69,7 +73,7 @@ class Game:
         self.screen.blit(self.background, (0, 0))
         self.enemies.draw(self.screen)
         pg.display.flip()
-        
+
         
 
 
