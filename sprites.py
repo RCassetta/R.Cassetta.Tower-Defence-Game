@@ -2,10 +2,11 @@ import pygame as pg
 # from main import *
 from settings import *
 from pygame.sprite import Sprite
-        
-class enemies(Sprite):
-    def __init__(self, width, height, color):
+
+class Enemy(Sprite):
+    def __init__(self, game, width, height, color):
         Sprite.__init__(self)
+        self.game = game
         self.width = width
         self.height = height
         self.color = color
@@ -13,7 +14,6 @@ class enemies(Sprite):
         self.image.fill(color)
         self.rect = self.image.get_rect()
         self.path_enabled = False
-        self.player_health = 100
     # def player_health(self):
     #     self.player_health = 100
     def path(self):
@@ -59,9 +59,9 @@ class enemies(Sprite):
         if self.path_enabled:
             self.path()
         if self.rect.x >= WIDTH:
-            self.player_health -= 1
-            print(self.player_health)
-            if self.player_health == 0:
+            self.game.player_health -= 1
+            print(self.game.player_health)
+            if self.game.player_health == 0:
                 print("Player Died")
                 return True
             self.kill()

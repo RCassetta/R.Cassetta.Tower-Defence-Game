@@ -2,6 +2,7 @@ import pygame as pg
 from settings import *
 from sprites import *
 import os
+from os import path
 
 '''
 GOALS:
@@ -28,26 +29,26 @@ class Game:
         self.clock = pg.time.Clock()
         self.running = True
         self.playing = True
-        background = pg.image.load("C:\\Users\\R.Cassetta24\\OneDrive - Bellarmine College Preparatory\\Desktop\\IntroCompSci\\Tower Defence Game VSCode\\assets\\background.png").convert()
+        background = pg.image.load(path.join(img_folder, "background.png")).convert()
         self.background = pg.transform.scale(background, (WIDTH, HEIGHT))
         self.path_enabled = False
 
     def new(self):
         self.enemies = pg.sprite.Group()
-        for enemy in ENEMY_LIST:
-            new_enemy = enemies(*enemy)
-            self.enemies.add(new_enemy)
-            new_enemy.rect = new_enemy.image.get_rect(center=(0, HEIGHT/2))
-            enemy_colors = ([RED] * ENEMY_COUNT)
-            enemy_positions = []
-        for i in range(ENEMY_COUNT):
+        self.player_health = 100
+        enemy_positions = []
+        for i in range(1,10):
+            if i > 5:
+                e = Enemy(self, 20, 20, BLUE)
+            else:
+                e = Enemy(self, 20, 20, RED)
             x = -40 * i
             y = HEIGHT / 2
-            enemy_positions.append((x, y))
-        for i in range(len(enemy_colors)):
-            enemy = enemies(20, 20, enemy_colors[i])
-            self.enemies.add(enemy)
-            enemy.rect = enemy.image.get_rect(center=enemy_positions[i])
+            enemy_positions.append((x,y))
+            e.rect = e.image.get_rect(center=enemy_positions[i-1])
+            self.enemies.add(e)
+        
+
     def events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -68,7 +69,8 @@ class Game:
             self.enemies.update()
             pg.display.flip()
             self.clock.tick(FPS)
-
+    def update(self):
+        self.enemies.update()
     def draw(self):
         self.screen.blit(self.background, (0, 0))
         self.enemies.draw(self.screen)
