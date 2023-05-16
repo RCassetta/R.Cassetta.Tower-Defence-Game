@@ -66,4 +66,3 @@ class Enemy(Sprite):
                 return True
             self.kill()
         return False
-
