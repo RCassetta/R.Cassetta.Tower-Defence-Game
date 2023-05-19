@@ -69,18 +69,20 @@ class Game:
         self.tower_group = pg.sprite.Group()
         self.Enemy = pg.sprite.Group()
         self.projectile_group = pg.sprite.Group()
-    ### DEATH SCREEN ###
+
+### DEATH SCREEN ###
     def show_death_screen(self):
         self.screen.blit(self.death_screen, (0, 0))
         pg.mixer_music.stop()
         death_sound.play()
         pg.display.flip()
 
-    ### ROUNDS ###
+### ROUNDS ###
     def new(self):
         tower = Tower(200, 300, self.projectile_group)
         self.tower_group.add(tower)
         enemy_positions = []
+
 ### ROUND 1 ###
         if self.round == 1:
             for i in range(1, 11):
@@ -93,6 +95,7 @@ class Game:
                 enemy_positions.append((x, y))
                 e.rect = e.image.get_rect(center=enemy_positions[i-1])
                 self.Enemy.add(e)
+
 ### ROUND 2 ###
         if self.round == 2:
             for i in range(1, 31):
@@ -105,6 +108,7 @@ class Game:
                 enemy_positions.append((x, y))
                 e.rect = e.image.get_rect(center=enemy_positions[i-1])
                 self.Enemy.add(e)
+
 ### ROUND 3 ###
         if self.round == 3:
             for i in range(1, 41):
@@ -117,6 +121,7 @@ class Game:
                 enemy_positions.append((x, y))
                 e.rect = e.image.get_rect(center=enemy_positions[i-1])
                 self.Enemy.add(e)
+
 ### ROUND 4 ###
         if self.round == 4:
             for i in range(1, 71):
@@ -129,6 +134,7 @@ class Game:
                 enemy_positions.append((x, y))
                 e.rect = e.image.get_rect(center=enemy_positions[i-1])
                 self.Enemy.add(e)
+                
 ### ROUND 5 ###
         if self.round == 5:
             for i in range(1, 101):
@@ -142,7 +148,7 @@ class Game:
                 e.rect = e.image.get_rect(center=enemy_positions[i-1])
                 self.Enemy.add(e)
 
-    ### CONSTANTS/HEALTH UPDATE ###
+### CONSTANTS/HEALTH UPDATE ###
     def run(self):
         while self.running:
             self.events()
@@ -164,8 +170,7 @@ class Game:
                 self.show_death_screen()
             pg.display.flip()
 
-
-    ### CONTROLS ###
+### CONTROLS ###
     def events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -183,19 +188,18 @@ class Game:
                         self.spawn_tower(*mouse_pos)
                         self.player_money -= 50
 
-    ### UPDATES ###
+### UPDATES ###
     def update(self):
         self.Enemy.update()
         
-
-    ### DRAW UPDATES ###
+### DRAW UPDATES ###
     def draw(self):
         self.screen.blit(self.background, (0, 0))
         self.Enemy.draw(self.screen)
         self.tower_group.draw(self.screen)
         pg.display.flip()
 
-    ### HEALTH AND MONEY ###
+### HEALTH AND MONEY ###
     def draw_player_info(self):
         health_text = f"Health: {self.player_health}"
         money_text = f"Money: {self.player_money}"
@@ -205,12 +209,13 @@ class Game:
 
         self.screen.blit(health_surface, (20, 20))
         self.screen.blit(money_surface, (20, 60))
-        
+
+### SPAWNS TOWER WITH SPACE BAR/ HALF IN EVENTS ###   
     def spawn_tower(self, x, y):
         tower = Tower(x, y, self.projectile_group, )
         self.tower_group.add(tower)
 
-
+### GAME CALLING ###
 game = Game()
 game.new()
 game.run()

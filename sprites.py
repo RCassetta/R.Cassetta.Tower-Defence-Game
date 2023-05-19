@@ -30,7 +30,6 @@ class Enemy(Sprite):
             self.health = 1
         else:
             self.health = health
-
         self.image.fill(self.color)
 
 ### ENEMY PATH ### 
@@ -147,15 +146,15 @@ class Projectile(pg.sprite.Sprite):
                 self.kill()
             else:
                 self.kill()
+
 ### PROJECTILE DIRECTION MODIFIER ###
     def calculate_direction(self):
         dx = self.target.rect.centerx - self.rect.centerx
         dy = self.target.rect.centery - self.rect.centery
         distance = math.hypot(dx, dy)
+
 ### PROJECTILE DISTANCE MODIFIER ###
         if distance != 0:
             direction_x = dx / distance
             direction_y = dy / distance
             return direction_x, direction_y
-
-        return 0, 0
