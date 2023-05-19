@@ -14,8 +14,12 @@ class Enemy(Sprite):
         self.image.fill(color)
         self.rect = self.image.get_rect()
         self.path_enabled = False
-    # def player_health(self):
-    #     self.player_health = 100
+        self.health = 0
+        if color == RED:
+            self.health = 10
+        elif color == BLUE:
+            self.health = 10
+        
     def path(self):
         # print(self.rect.x)
         # print(self.rect.y)
@@ -58,10 +62,10 @@ class Enemy(Sprite):
         # print(self.rect.x)
         if self.path_enabled:
             self.path()
-        if self.rect.x >= WIDTH:
-            self.game.player_health -= 1
+        if self.rect.x >= WIDTH and self.game.player_health > 0:
+            self.game.player_health -= self.health
             print(self.game.player_health)
-            if self.game.player_health == 0:
+            if self.game.player_health <= 0:
                 print("Player Died")
                 return True
             self.kill()
