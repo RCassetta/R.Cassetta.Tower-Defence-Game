@@ -1,3 +1,4 @@
+### GAME SETTING ###
 WIDTH = 1400
 HEIGHT = 850
 BLACK = (0,0,0)
