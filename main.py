@@ -31,7 +31,7 @@ Make a menu // NA
 # To pause enemy movement -> press p once and again to resume
 # New towers cost 50$ and you earn $ by shooting the enemies
 # In order to place a new tower, you must put the mouse in the position where you want the tower and click space bar
-
+# MR. Cozort, if you play this, at least once let yourself die to the enemies for a surprise!
 ### CONTROLS ###
 # p = pause/resume/start
 # space = buy new tower
